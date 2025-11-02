@@ -1,11 +1,9 @@
 {
   "ExpandedNodes": [
     "",
+    "\\BibliothequeAPI",
     "\\BibliothequeAPI\\Controllers",
-    "\\Paramètres locaux (.vs)",
-    "\\Paramètres locaux (.vs)\\BibliothequeAPI",
-    "\\Paramètres locaux (.vs)\\BibliothequeAPI\\FileContentIndex"
+    "\\BibliothequeAPI\\Models"
   ],
-  "SelectedNode": "\\Paramètres locaux (.vs)\\BibliothequeAPI\\FileContentIndex\\c7b9d0f5-8422-433e-a4fe-f95472931b61.vsidx",
   "PreviewInSolutionExplorer": false
 }
