@@ -1,0 +1,63 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-secondary">
+  <div class="container">
+    <a class="navbar-brand fw-bold text-warning" routerLink="/admin/dashboard">{{ authService.isAdmin() ? 'AutoWay Admin' : 'AutoWay Staff' }}</a>
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navReservations">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navReservations">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link text-light" routerLink="/admin/dashboard">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" routerLink="/admin/voitures">Voitures</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light active" routerLink="/admin/reservations">Réservations</a>
+        </li>
+        @if (authService.isAdmin()) {
+          <li class="nav-item">
+            <a class="nav-link text-light" routerLink="/admin/utilisateurs">Utilisateurs</a>
+          </li>
+        }
+        <li class="nav-item">
+          <a class="btn btn-warning ms-3" routerLink="/">Retour au site</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main class="py-5">
+  <div class="container">
+    <h3 class="text-warning mb-4">Gérer les réservations</h3>
+    <table class="table table-dark table-hover">
+      <thead class="text-warning">
+        <tr>
+          <th>ID</th>
+          <th>Utilisateur ID</th>
+          <th>Voiture ID</th>
+          <th>Date début</th>
+          <th>Date fin</th>
+          <th>Prix final</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (reservation of reservations; track reservation.reservationID) {
+          <tr>
+            <td>{{ reservation.reservationID }}</td>
+            <td>{{ reservation.utilisateurID }}</td>
+            <td>{{ reservation.voitureID }}</td>
+            <td>{{ reservation.dateDebut }}</td>
+            <td>{{ reservation.dateFin }}</td>
+            <td>{{ reservation.prixFinal }}€</td>
+            <td>
+              <button class="btn btn-outline-danger btn-sm" (click)="deleteReservation(reservation.reservationID)">Supprimer</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</main>

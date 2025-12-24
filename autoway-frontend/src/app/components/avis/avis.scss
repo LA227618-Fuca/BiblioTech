@@ -1,0 +1,78 @@
+// Styles pour améliorer la lisibilité des selects
+.avis-select {
+  background-color: #2d2d2d !important;
+  border: 1px solid #6c757d !important;
+  color: #ffffff !important;
+  padding: 0.5rem 0.75rem !important;
+  
+  &:hover {
+    background-color: #353535 !important;
+    border-color: #ffc107 !important;
+  }
+  
+  &:focus {
+    background-color: #2d2d2d !important;
+    border-color: #ffc107 !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25);
+    outline: none;
+  }
+  
+  // Style pour les options (fonctionne dans certains navigateurs)
+  option {
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+    padding: 0.75rem !important;
+  }
+  
+  // Pour le placeholder/option par défaut
+  option[value="0"] {
+    color: #adb5bd !important;
+    background-color: #2d2d2d !important;
+  }
+  
+  // Style pour les options sélectionnées
+  option:checked {
+    background-color: #ffc107 !important;
+    color: #000000 !important;
+  }
+}
+
+// Améliorer le contraste général des labels
+.form-label {
+  color: #ffffff !important;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+// Améliorer la visibilité du textarea et son placeholder
+textarea.form-control {
+  background-color: #2d2d2d !important;
+  border-color: #6c757d !important;
+  color: #ffffff !important;
+  
+  &::placeholder {
+    color: #adb5bd !important;
+    opacity: 1 !important;
+  }
+  
+  &:focus {
+    background-color: #2d2d2d !important;
+    border-color: #ffc107 !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25);
+  }
+}
+
+// Améliorer la visibilité du texte dans le select
+select.avis-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ffc107' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px 12px;
+  padding-right: 2.5rem !important;
+}
+

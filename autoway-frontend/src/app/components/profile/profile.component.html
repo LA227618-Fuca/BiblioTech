@@ -1,0 +1,164 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="d-flex align-items-center mb-4">
+        <button class="btn btn-outline-secondary me-3" (click)="goBack()">
+          <i class="bi bi-arrow-left"></i> Retour
+        </button>
+        <h2 class="text-warning mb-0">Mon Profil</h2>
+      </div>
+
+      @if (isLoading) {
+        <div class="text-center py-5">
+          <div class="spinner-border text-warning" role="status">
+            <span class="visually-hidden">Chargement...</span>
+          </div>
+        </div>
+      } @else if (error && !isEditing) {
+        <div class="alert alert-danger" role="alert">
+          {{ error }}
+          <button class="btn btn-sm btn-outline-danger ms-2" (click)="loadProfile()">Réessayer</button>
+        </div>
+      } @else if (utilisateur) {
+        @if (success) {
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ success }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        }
+
+        @if (error) {
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ error }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        }
+
+        @if (!isEditing) {
+          <!-- Mode affichage -->
+          <div class="card bg-dark border-secondary">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center mb-4">
+                <h4 class="text-light mb-0">Informations personnelles</h4>
+                <button class="btn btn-warning" (click)="toggleEdit()">
+                  <i class="bi bi-pencil"></i> Modifier
+                </button>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-sm-4">
+                  <strong class="text-light">Nom :</strong>
+                </div>
+                <div class="col-sm-8">
+                  <span class="text-light">{{ utilisateur.nom }}</span>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-sm-4">
+                  <strong class="text-light">Prénom :</strong>
+                </div>
+                <div class="col-sm-8">
+                  <span class="text-light">{{ utilisateur.prenom }}</span>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-sm-4">
+                  <strong class="text-light">Email :</strong>
+                </div>
+                <div class="col-sm-8">
+                  <span class="text-light">{{ utilisateur.email }}</span>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-sm-4">
+                  <strong class="text-light">Date de naissance :</strong>
+                </div>
+                <div class="col-sm-8">
+                  <span class="text-light">{{ utilisateur.dateNaissance | date:'dd/MM/yyyy' }}</span>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-sm-4">
+                  <strong class="text-light">Rôles :</strong>
+                </div>
+                <div class="col-sm-8">
+                  <span class="badge bg-warning text-dark">{{ getRoles() }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        } @else {
+          <!-- Mode édition -->
+          <div class="card bg-dark border-secondary">
+            <div class="card-body">
+              <h4 class="text-light mb-4">Modifier mon profil</h4>
+
+              <form (ngSubmit)="onSubmit()">
+                <div class="mb-3">
+                  <label for="nom" class="form-label text-light">Nom</label>
+                  <input
+                    type="text"
+                    class="form-control bg-secondary border-secondary text-light"
+                    id="nom"
+                    name="nom"
+                    [(ngModel)]="formData.nom"
+                    required
+                    placeholder="Votre nom"
+                  />
+                </div>
+
+                <div class="mb-3">
+                  <label for="prenom" class="form-label text-light">Prénom</label>
+                  <input
+                    type="text"
+                    class="form-control bg-secondary border-secondary text-light"
+                    id="prenom"
+                    name="prenom"
+                    [(ngModel)]="formData.prenom"
+                    required
+                    placeholder="Votre prénom"
+                  />
+                </div>
+
+                <div class="mb-3">
+                  <label for="email" class="form-label text-light">Email</label>
+                  <input
+                    type="email"
+                    class="form-control bg-secondary border-secondary text-light"
+                    id="email"
+                    name="email"
+                    [(ngModel)]="formData.email"
+                    required
+                    placeholder="votre.email@example.com"
+                  />
+                </div>
+
+                <div class="mb-3">
+                  <label for="dateNaissance" class="form-label text-light">Date de naissance</label>
+                  <input
+                    type="date"
+                    class="form-control bg-secondary border-secondary text-light"
+                    id="dateNaissance"
+                    name="dateNaissance"
+                    [(ngModel)]="formData.dateNaissance"
+                    required
+                  />
+                </div>
+
+                <div class="d-flex gap-2">
+                  <button type="submit" class="btn btn-warning">Enregistrer</button>
+                  <button type="button" class="btn btn-secondary" (click)="toggleEdit()">Annuler</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        }
+      }
+    </div>
+  </div>
+</div>
+

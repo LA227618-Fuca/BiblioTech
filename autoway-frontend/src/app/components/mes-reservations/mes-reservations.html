@@ -1,0 +1,52 @@
+<app-navbar></app-navbar>
+
+<main class="py-5">
+  <div class="container">
+    <h3 class="mb-4">Mes réservations</h3>
+
+    @for (reservation of reservations; track reservation.reservationID) {
+      <div class="card bg-dark border-secondary mb-3">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h5 class="mb-1">Réservation #AW-{{ reservation.reservationID }}</h5>
+              <div class="small text-muted">
+                Voiture ID: {{ reservation.voitureID }} • 
+                {{ reservation.dateDebut }} - {{ reservation.dateFin }}
+              </div>
+            </div>
+            <div class="text-end">
+              <div class="text-warning fw-bold">{{ reservation.prixFinal }}€</div>
+              <div class="small text-muted">
+                Statut : {{ isPast(reservation.dateFin) ? 'Terminée' : 'Confirmée' }}
+              </div>
+              <div class="mt-2">
+                <a [routerLink]="['/voiture', reservation.voitureID]" class="btn btn-sm btn-outline-light">Détails</a>
+                @if (!isPast(reservation.dateFin)) {
+                  <button class="btn btn-sm btn-outline-warning ms-1" (click)="deleteReservation(reservation.reservationID)">Annuler</button>
+                }
+                @if (isPast(reservation.dateFin) && !reservation.avis) {
+                  <a routerLink="/avis" class="btn btn-sm btn-outline-light ms-1">Laisser un avis</a>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+
+    @if (reservations.length === 0) {
+      <p class="text-muted">Aucune réservation pour le moment.</p>
+    }
+  </div>
+</main>
+
+<footer class="pt-4 pb-3 border-top border-secondary">
+  <div class="container d-flex justify-content-between text-muted">
+    <small>© 2025 AutoWay</small>
+    <div>
+      <a href="#" class="text-muted me-3">Mentions légales</a>
+      <a href="#" class="text-muted">Contact</a>
+    </div>
+  </div>
+</footer>
