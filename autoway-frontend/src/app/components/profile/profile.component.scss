@@ -1,0 +1,14 @@
+.card {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.form-control:focus {
+  border-color: #ffc107;
+  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+}
+
+.badge {
+  font-size: 0.9rem;
+  padding: 0.5rem 0.75rem;
+}
+

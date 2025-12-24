@@ -1,0 +1,173 @@
+/* Global Styles */
+body {
+  background-color: #212529;
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Bootstrap Dark Theme Overrides */
+.bg-dark {
+  background-color: #212529 !important;
+}
+
+.text-light {
+  color: #ffffff !important;
+}
+
+.text-muted {
+  color: #6c757d !important;
+}
+
+.text-warning {
+  color: #ffc107 !important;
+}
+
+.border-secondary {
+  border-color: #6c757d !important;
+}
+
+.btn-warning {
+  background-color: #ffc107;
+  border-color: #ffc107;
+  color: #000;
+}
+
+.btn-warning:hover {
+  background-color: #ffca2c;
+  border-color: #ffca2c;
+  color: #000;
+}
+
+.btn-outline-light {
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
+.btn-outline-light:hover {
+  background-color: #ffffff;
+  color: #212529;
+}
+
+.form-control {
+  background-color: rgba(108, 117, 125, 0.1);
+  border-color: #6c757d;
+  color: #ffffff;
+}
+
+.form-control:focus {
+  background-color: rgba(108, 117, 125, 0.2);
+  border-color: #ffc107;
+  color: #ffffff;
+  box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25);
+}
+
+// Améliorer la visibilité des placeholders
+.form-control::placeholder {
+  color: #adb5bd !important;
+  opacity: 1 !important;
+}
+
+.form-control::-webkit-input-placeholder {
+  color: #adb5bd !important;
+  opacity: 1 !important;
+}
+
+.form-control::-moz-placeholder {
+  color: #adb5bd !important;
+  opacity: 1 !important;
+}
+
+.form-control:-ms-input-placeholder {
+  color: #adb5bd !important;
+  opacity: 1 !important;
+}
+
+.form-control:-moz-placeholder {
+  color: #adb5bd !important;
+  opacity: 1 !important;
+}
+
+textarea.form-control::placeholder {
+  color: #adb5bd !important;
+  opacity: 1 !important;
+}
+
+textarea.form-control::-webkit-input-placeholder {
+  color: #adb5bd !important;
+  opacity: 1 !important;
+}
+
+textarea.form-control::-moz-placeholder {
+  color: #adb5bd !important;
+  opacity: 1 !important;
+}
+
+textarea.form-control:-ms-input-placeholder {
+  color: #adb5bd !important;
+  opacity: 1 !important;
+}
+
+textarea.form-control:-moz-placeholder {
+  color: #adb5bd !important;
+  opacity: 1 !important;
+}
+
+.form-select {
+  background-color: rgba(108, 117, 125, 0.1);
+  border-color: #6c757d;
+  color: #ffffff;
+}
+
+.form-select:focus {
+  background-color: rgba(108, 117, 125, 0.2);
+  border-color: #ffc107;
+  color: #ffffff;
+  box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25);
+}
+
+// Améliorer les textareas
+textarea.form-control {
+  background-color: rgba(108, 117, 125, 0.1);
+  border-color: #6c757d;
+  color: #ffffff;
+  min-height: 120px;
+}
+
+textarea.form-control:focus {
+  background-color: rgba(108, 117, 125, 0.2);
+  border-color: #ffc107;
+  color: #ffffff;
+  box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25);
+}
+
+textarea.form-control::placeholder {
+  color: #adb5bd !important;
+  opacity: 1 !important;
+}
+
+.card {
+  background-color: #212529;
+  border-color: #6c757d;
+}
+
+.table-dark {
+  --bs-table-bg: #212529;
+  --bs-table-striped-bg: #2c3034;
+  --bs-table-hover-bg: #373b3e;
+  color: #ffffff;
+}
+
+.modal-content {
+  background-color: #212529;
+  border-color: #6c757d;
+}
+
+.modal-header {
+  border-bottom-color: #6c757d;
+}
+
+.alert-danger {
+  background-color: #842029;
+  border-color: #842029;
+  color: #fff;
+}

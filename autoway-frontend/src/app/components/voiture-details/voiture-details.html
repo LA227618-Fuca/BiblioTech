@@ -1,0 +1,74 @@
+<app-navbar></app-navbar>
+
+<main class="py-4">
+  <div class="container">
+    @if (voiture) {
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <div id="carouselCar" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner rounded overflow-hidden border border-secondary">
+              <div class="carousel-item active">
+                <img [src]="getImageUrl(voiture)" 
+                     class="d-block w-100" 
+                     [alt]="voiture.modele"
+                     (error)="onImageError($event, voiture)">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <h2 class="fw-bold">{{ voiture.marque }} {{ voiture.modele }}</h2>
+          <p class="text-muted">Plaque: {{ voiture.plaqueImm }}</p>
+
+          <div class="mb-3">
+            <h4 class="text-warning">{{ voiture.prixJournalier }}€/jour</h4>
+            <small class="text-muted">Assurance standard incluse • kilométrage illimité</small>
+          </div>
+
+          <ul class="list-group list-group-flush mb-3">
+            <li class="list-group-item bg-dark border-secondary text-light"><strong>Plaque:</strong> {{ voiture.plaqueImm }}</li>
+            <li class="list-group-item bg-dark border-secondary text-light"><strong>Prix journalier:</strong> {{ voiture.prixJournalier }}€</li>
+          </ul>
+
+          <div class="d-flex">
+            <a [routerLink]="['/reservation', voiture.voitureID]" class="btn btn-warning me-2">Réserver</a>
+            <a routerLink="/catalogue" class="btn btn-outline-light">Retour au catalogue</a>
+          </div>
+
+          <hr class="my-4 border-secondary">
+
+          <h5 class="mb-2">Avis clients</h5>
+          @for (avisItem of getAvisForVoiture(); track avisItem.avisID) {
+            <div class="mb-2">
+              <div class="small text-warning">{{ getStars(avisItem.score) }}</div>
+              <div class="text-muted">"{{ avisItem.message || 'Avis sans commentaire' }}"</div>
+            </div>
+          }
+          <div>
+            <a routerLink="/avis" class="btn btn-sm btn-outline-light">Voir tous les avis</a>
+          </div>
+        </div>
+      </div>
+    } @else if (error) {
+      <div class="text-center py-5">
+        <p class="text-danger">{{ error }}</p>
+        <a routerLink="/catalogue" class="btn btn-outline-light mt-3">Retour au catalogue</a>
+      </div>
+    } @else {
+      <div class="text-center py-5">
+        <p class="text-muted">Chargement...</p>
+      </div>
+    }
+  </div>
+</main>
+
+<footer class="pt-4 pb-3 border-top border-secondary">
+  <div class="container d-flex justify-content-between text-muted">
+    <small>© 2025 AutoWay</small>
+    <div>
+      <a href="#" class="text-muted me-3">Mentions légales</a>
+      <a href="#" class="text-muted">Contact</a>
+    </div>
+  </div>
+</footer>
