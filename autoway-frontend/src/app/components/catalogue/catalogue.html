@@ -1,0 +1,78 @@
+<app-navbar></app-navbar>
+
+<main class="py-4">
+  <div class="container">
+    <div class="row mb-4">
+      <div class="col-md-3">
+        <h5 class="text-warning">Filtres</h5>
+        <div class="list-group bg-dark border-secondary">
+          <a class="list-group-item list-group-item-action bg-dark text-light border-0" (click)="recherche = ''; prixMax = prixMaxSlider; filtrer()">Tous</a>
+        </div>
+        <div class="mt-3">
+          <label class="form-label text-muted">Prix max / jour</label>
+          <input class="form-range" type="range" min="20" [max]="prixMaxSlider" [(ngModel)]="prixMax" name="prixMax" (input)="filtrer()">
+          <div class="small text-muted">{{ prixMax }}€</div>
+        </div>
+      </div>
+
+      <div class="col-md-9">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4 class="mb-0">Nos véhicules</h4>
+          <form class="d-flex" (submit)="$event.preventDefault(); filtrer()">
+            <input class="form-control me-2 bg-secondary bg-opacity-10 border-secondary text-light" 
+                   type="search" 
+                   placeholder="Rechercher modèle, marque"
+                   [(ngModel)]="recherche"
+                   name="recherche"
+                   (input)="filtrer()">
+            <button class="btn btn-outline-light" type="submit">Rechercher</button>
+          </form>
+        </div>
+
+        <!-- Grille voitures -->
+        <div class="row g-3">
+          @for (voiture of voituresFiltrees; track voiture.voitureID) {
+            <div class="col-md-6 col-lg-4">
+              <div class="card h-100 bg-dark border-secondary text-light">
+                <img [src]="getImageUrl(voiture)" 
+                     class="card-img-top" 
+                     [alt]="voiture.modele"
+                     (error)="onImageError($event, voiture)"
+                     loading="lazy">
+                <div class="card-body">
+                  <h5 class="card-title">{{ voiture.marque }} {{ voiture.modele }}</h5>
+                  <p class="card-text text-muted">Plaque: {{ voiture.plaqueImm }}</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                      <strong class="text-warning">{{ voiture.prixJournalier }}€/jour</strong>
+                      <div class="small text-muted">Assurance incluse</div>
+                    </div>
+                    <div>
+                      <a [routerLink]="['/voiture', voiture.voitureID]" class="btn btn-outline-light btn-sm">Détails</a>
+                      <a [routerLink]="['/reservation', voiture.voitureID]" class="btn btn-warning btn-sm ms-2">Réserver</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+          @if (voituresFiltrees.length === 0) {
+            <div class="col-12">
+              <p class="text-muted">Aucune voiture trouvée.</p>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="pt-4 pb-3 border-top border-secondary">
+  <div class="container d-flex justify-content-between text-muted">
+    <small>© 2025 AutoWay</small>
+    <div>
+      <a href="#" class="text-muted me-3">Mentions légales</a>
+      <a href="#" class="text-muted">Contact</a>
+    </div>
+  </div>
+</footer>

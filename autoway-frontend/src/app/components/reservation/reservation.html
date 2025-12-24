@@ -1,0 +1,77 @@
+<app-navbar></app-navbar>
+
+<main class="py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card bg-dark border-secondary">
+          <div class="card-body">
+            <h3 class="card-title text-warning">Réserver : {{ voiture?.marque }} {{ voiture?.modele }}</h3>
+            <p class="text-muted">Remplissez les informations ci-dessous pour finaliser votre réservation.</p>
+
+            @if (error) {
+              <div class="alert alert-danger">{{ error }}</div>
+            }
+
+            <form (ngSubmit)="onSubmit()">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">Date de début</label>
+                  <input type="date" 
+                         class="form-control bg-secondary bg-opacity-10 border-secondary text-light" 
+                         [(ngModel)]="reservation.dateDebut"
+                         name="dateDebut"
+                         (change)="calculerPrix()"
+                         required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Date de fin</label>
+                  <input type="date" 
+                         class="form-control bg-secondary bg-opacity-10 border-secondary text-light" 
+                         [(ngModel)]="reservation.dateFin"
+                         name="dateFin"
+                         (change)="calculerPrix()"
+                         required>
+                </div>
+
+                <div class="col-12">
+                  <label class="form-label">Récapitulatif</label>
+                  <div class="p-3 bg-secondary bg-opacity-10 border border-secondary rounded text-light">
+                    <div class="d-flex justify-content-between">
+                      <div>Prix journalier</div>
+                      <div class="text-warning">{{ voiture?.prixJournalier }}€/jour</div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                      <div>Nombre de jours</div>
+                      <div class="text-muted">{{ getNombreJours() }}</div>
+                    </div>
+                    <hr class="border-secondary">
+                    <div class="d-flex justify-content-between fw-bold">
+                      <div>Total estimé</div>
+                      <div class="text-warning">{{ reservation.prixFinal }}€</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 text-end">
+                  <a routerLink="/catalogue" class="btn btn-outline-light me-2">Retour</a>
+                  <button type="submit" class="btn btn-warning">Confirmer la réservation</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="pt-4 pb-3 border-top border-secondary">
+  <div class="container d-flex justify-content-between text-muted">
+    <small>© 2025 AutoWay</small>
+    <div>
+      <a href="#" class="text-muted me-3">Mentions légales</a>
+      <a href="#" class="text-muted">Contact</a>
+    </div>
+  </div>
+</footer>
